@@ -28,3 +28,8 @@ obj/
 _ReSharper*/
 [Tt]est[Rr]esult*
 *.dll
+*.sln
+HouseBillsRaven/HouseBillsRaven/HouseBills/Data
+*.crash-marker
+*.sln
+*.edb

@@ -1,6 +1,9 @@
 ﻿using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Raven.Client.Document;
+using Raven.Client.Embedded;
+using Raven.Database.Server;
 
 namespace HouseBillsRaven
 {
@@ -8,6 +11,8 @@ namespace HouseBillsRaven
     // visit http://go.microsoft.com/?LinkId=9394801
     public class MvcApplication : System.Web.HttpApplication
     {
+        public static EmbeddableDocumentStore DocumentStore { get; set; }
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -15,6 +20,15 @@ namespace HouseBillsRaven
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            DocumentStore = new EmbeddableDocumentStore
+            {
+                DataDirectory = "HouseBills",
+                UseEmbeddedHttpServer = true
+            };
+
+            NonAdminHttp.EnsureCanListenToWhenInNonAdminContext(8080);
+            DocumentStore.Initialize();
         }
     }
 }
