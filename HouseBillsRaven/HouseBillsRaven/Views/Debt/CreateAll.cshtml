@@ -1,0 +1,15 @@
+﻿@inherits WebViewPage<HouseBillsRaven.Models.CreateAllVm>
+
+@using (Html.BeginForm("CreateDebtForAll", "Debt")){
+    <table>
+        <tr>
+            <td>Description:</td>
+            <td>@Html.TextBoxFor(x => x.Description)</td>
+        </tr>
+        <tr>
+            <td>Amount:</td>
+            <td>@Html.TextBoxFor(x => x.Amount)</td>
+        </tr>
+    </table>
+    <input type="submit" value="Create"/>
+}

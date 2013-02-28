@@ -1,2 +1,25 @@
-﻿
-@Html.ActionLink("Create Person", "InsertPerson", "Person")
+﻿<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.10.0.min.js"></script>
+<link href="~/Content/themes/base/jquery.ui.base.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/themes/base/jquery.ui.tabs.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/themes/base/jquery.ui.all.css" rel="stylesheet" />
+</>
+@*@Html.ActionLink("Create Person", "InsertPerson", "Person")*@
+
+<div id="tabs">
+    <ul>
+        <li><a href="#GeneralList">The General List</a></li>
+        <li><a href="#Breakdown">Breakdown</a></li>
+        <li><a href="#CreateAll">Create All</a></li>
+        <li><a href="#CreateOne">Create One</a></li>
+    </ul>
+    <div id="GeneralList"></div>
+    <div id="Breakdown"></div>
+    <div id="CreateAll">@{ Html.RenderAction("CreateAll", "Debt"); }</div>
+    <div id="CreateOne"></div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#tabs").tabs();
+    });
+</script>
