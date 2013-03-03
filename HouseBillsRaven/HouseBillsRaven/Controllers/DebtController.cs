@@ -1,7 +1,5 @@
-﻿using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using HouseBillsRaven.Models;
-using Raven.Client.Linq;
 
 namespace HouseBillsRaven.Controllers
 {

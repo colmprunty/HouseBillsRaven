@@ -1,0 +1,11 @@
+﻿@inherits WebViewPage<HouseBillsRaven.Models.LoginVm>
+
+<h2>Login</h2>
+
+@using(Html.BeginForm("LoginUser", "Person"))
+{
+    <p>Login</p>
+    @Html.TextBoxFor(x => x.Name)
+
+    <input type="submit" value="Submit"/>
+}

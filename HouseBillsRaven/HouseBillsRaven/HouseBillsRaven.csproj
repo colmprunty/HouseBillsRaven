@@ -122,6 +122,7 @@
   <ItemGroup>
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DebtController.cs" />
+    <Compile Include="Controllers\DebugController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Global.asax.cs">
@@ -129,6 +130,7 @@
     </Compile>
     <Compile Include="Models\CreateAllVm.cs" />
     <Compile Include="Models\CreateOneVm.cs" />
+    <Compile Include="Models\LoginVm.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -214,6 +216,10 @@
     <Content Include="Views\Web.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\Debt\CreateAll.cshtml" />
+    <Content Include="Views\Person\Login.cshtml" />
+    <Content Include="Views\Shared\SiteLayout.cshtml" />
+    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
