@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using HouseBillsRaven.Models;
 
 namespace HouseBillsRaven.Controllers
@@ -15,12 +16,14 @@ namespace HouseBillsRaven.Controllers
 
             var colm = new Person
                            {
+                               Id = Guid.NewGuid(),
                                Name = "Colm",
                                Alive = true
                            };
 
             var weija = new Person
                             {
+                                Id = Guid.NewGuid(),
                                 Name = "Weija",
                                 Alive = true
                             };

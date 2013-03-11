@@ -130,6 +130,7 @@
     </Compile>
     <Compile Include="Models\CreateAllVm.cs" />
     <Compile Include="Models\CreateOneVm.cs" />
+    <Compile Include="Models\Debt.cs" />
     <Compile Include="Models\LoginVm.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -206,7 +207,9 @@
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.0.js" />
     <Content Include="Scripts\jquery-ui-1.10.0.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

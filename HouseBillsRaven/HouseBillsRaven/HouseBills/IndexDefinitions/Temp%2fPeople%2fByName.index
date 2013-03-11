@@ -1,8 +1,8 @@
 {
-  "Name": "Temp/People/ByAliveAndName",
-  "Map": "from doc in docs.People\r\nselect new { Alive = doc.Alive, Name = doc.Name }",
+  "Name": "Temp/People/ByName",
+  "Map": "from doc in docs.People\r\nselect new { Name = doc.Name }",
   "Maps": [
-    "from doc in docs.People\r\nselect new { Alive = doc.Alive, Name = doc.Name }"
+    "from doc in docs.People\r\nselect new { Name = doc.Name }"
   ],
   "Reduce": null,
   "TransformResults": null,

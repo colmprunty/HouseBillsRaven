@@ -1,7 +1,9 @@
-﻿namespace HouseBillsRaven.Models
+﻿using System;
+
+namespace HouseBillsRaven.Models
 {
     public class LoginVm
     {
-        public string Name { get; set; }
+        public Guid Id { get; set; }
     }
 }

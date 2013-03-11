@@ -1,5 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Linq;
+using System.Web.Mvc;
 using HouseBillsRaven.Models;
+using Raven.Client.Linq;
 
 namespace HouseBillsRaven.Controllers
 {
@@ -7,7 +10,6 @@ namespace HouseBillsRaven.Controllers
     {
         public PartialViewResult CreateAll()
         {
-            //var people = (from p in RavenSession.Query<Person>().Where(x => x.Alive).ToList() select new SelectListItem{ Value = p.Id.ToString(), Text = p.Name}).ToList();
             var model = new CreateAllVm();
             return PartialView(model);
         }
@@ -15,6 +17,23 @@ namespace HouseBillsRaven.Controllers
         [HttpPost]
         public ActionResult CreateDebtForAll(CreateAllVm createAll)
         {
+            var otherUsers = (from u in RavenSession.Query<Person>().Where(x => x.Name != CurrentUser.Name) select u).ToList();
+            var count = otherUsers.Count;
+            foreach (var user in otherUsers)
+            {
+                var debt = new Debt
+                               {
+                                   AddedDate = DateTime.Now,
+                                   Amount = createAll.Amount/count,
+                                   Description = createAll.Description,
+                                   OwedBy = user,
+                                   OwedTo = CurrentUser
+                               };
+
+                RavenSession.Store(debt);
+            }
+
+            RavenSession.SaveChanges();
             return RedirectToAction("Index", "Home");
         }
     }

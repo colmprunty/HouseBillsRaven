@@ -30,11 +30,11 @@ namespace HouseBillsRaven.Controllers
 
         public ActionResult LoginUser(LoginVm model)
         {
-            var user = RavenSession.Query<Person>().SingleOrDefault(x => x.Name == model.Name && x.Alive);
+            var user = RavenSession.Query<Person>().SingleOrDefault(x => x.Id == model.Id && x.Alive);
             if (user == null)
                 return RedirectToAction("Login", new LoginVm());
 
-            FormsAuthentication.SetAuthCookie(model.Name, false);
+            FormsAuthentication.SetAuthCookie(model.Id.ToString(), false);
             return RedirectToAction("Index", "Home");
         }
 
