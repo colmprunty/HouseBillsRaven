@@ -1,0 +1,40 @@
+﻿@inherits WebViewPage<HouseBillsRaven.Models.GeneralListVm>
+
+<table style="width: 85%">
+    
+    <tr>
+        <th>Who</th>
+        <th>How Much?</th>
+        <th>For What?</th>
+        <th>Created On</th>
+        <th>Actions</th>
+    </tr>
+    <tr>
+        <td colspan="5" style="text-align: center">I Am Owed</td>
+    </tr>
+    @{foreach (var debt in Model.OwedToMe)
+      {
+          <tr>
+              <td>@debt.OwedBy.Name</td>
+              <td>@String.Format("{0:C}", debt.Amount)</td>
+              <td>@debt.Description</td>
+              <td>@debt.AddedDate.ToShortDateString()</td>
+              <td></td>
+          </tr>
+      }
+    }
+    <tr>
+        <td colspan="5" style="text-align: center">I Have To Pay</td>
+    </tr>
+    @{foreach (var debt in Model.OwedToOthers)
+      {
+          <tr>
+              <td>@debt.OwedTo.Name</td>
+              <td>@String.Format("{0:C}", debt.Amount)</td>
+              <td>@debt.Description</td>
+              <td>@debt.AddedDate.ToShortDateString()</td>
+              <td></td>
+          </tr>
+      }
+    }
+</table>

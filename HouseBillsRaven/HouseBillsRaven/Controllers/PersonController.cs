@@ -28,14 +28,15 @@ namespace HouseBillsRaven.Controllers
             return View(model);
         }
 
-        public ActionResult LoginUser(LoginVm model)
+        public void LoginUser(LoginVm model)
         {
-            var user = RavenSession.Query<Person>().SingleOrDefault(x => x.Id == model.Id && x.Alive);
+            var user = RavenSession.Query<Person>().SingleOrDefault(x => x.Name == model.Name && x.Alive);
             if (user == null)
-                return RedirectToAction("Login", new LoginVm());
+                Response.Redirect(Url.Action("Login", new LoginVm()));
 
-            FormsAuthentication.SetAuthCookie(model.Id.ToString(), false);
-            return RedirectToAction("Index", "Home");
+            FormsAuthentication.SetAuthCookie(user.Id.ToString(), false);
+            Response.Redirect(Url.Action("Index", "Home"));
+            
         }
 
         public ActionResult Logout()

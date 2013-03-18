@@ -120,6 +120,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\CSS\Site.css" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DebtController.cs" />
     <Compile Include="Controllers\DebugController.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="Models\CreateAllVm.cs" />
     <Compile Include="Models\CreateOneVm.cs" />
     <Compile Include="Models\Debt.cs" />
+    <Compile Include="Models\GeneralListVm.cs" />
     <Compile Include="Models\LoginVm.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -223,6 +225,7 @@
     <Content Include="Views\Shared\SiteLayout.cshtml" />
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Debt\GeneralList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

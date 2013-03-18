@@ -36,5 +36,13 @@ namespace HouseBillsRaven.Controllers
             RavenSession.SaveChanges();
             return RedirectToAction("Index", "Home");
         }
+
+        public PartialViewResult GeneralList()
+        {
+            var model = new GeneralListVm();
+            model.OwedToMe = (from d in RavenSession.Query<Debt>().Where(x => x.OwedTo.Id == CurrentUser.Id) select d).ToList();
+            model.OwedToOthers = (from d in RavenSession.Query<Debt>().Where(x => x.OwedBy.Id == CurrentUser.Id) select d).ToList();
+            return PartialView(model);
+        }
     }
 }

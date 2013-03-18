@@ -1,8 +1,7 @@
-﻿using System.Linq;
+﻿using System;
 using System.Web.Mvc;
 using HouseBillsRaven.Models;
 using Raven.Client;
-using Raven.Client.Linq;
 
 namespace HouseBillsRaven.Controllers
 {
@@ -14,7 +13,7 @@ namespace HouseBillsRaven.Controllers
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             RavenSession = MvcApplication.DocumentStore.OpenSession();
-            CurrentUser = User == null ? null : (from p in RavenSession.Query<Person>() where p.Name == User.Identity.Name select p).SingleOrDefault();
+            CurrentUser = (User == null || string.IsNullOrEmpty(User.Identity.Name) ? null : RavenSession.Load<Person>(new Guid(User.Identity.Name)));
         }
 
         protected override void OnActionExecuted(ActionExecutedContext filterContext)

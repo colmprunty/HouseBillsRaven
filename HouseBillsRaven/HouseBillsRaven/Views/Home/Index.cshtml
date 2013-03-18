@@ -5,7 +5,7 @@
         <li><a href="#CreateAll">Create All</a></li>
         <li><a href="#CreateOne">Create One</a></li>
     </ul>
-    <div id="GeneralList"></div>
+    <div id="GeneralList">@{ Html.RenderAction("GeneralList", "Debt"); }</div>
     <div id="Breakdown"></div>
     <div id="CreateAll">@{ Html.RenderAction("CreateAll", "Debt"); }</div>
     <div id="CreateOne"></div>
