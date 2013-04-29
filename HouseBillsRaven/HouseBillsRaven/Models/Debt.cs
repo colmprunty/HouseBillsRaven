@@ -10,5 +10,6 @@ namespace HouseBillsRaven.Models
         public decimal Amount { get; set; }
         public Person OwedBy { get; set; }
         public Person OwedTo { get; set; }
+        public bool Paid { get; set; }
     }
 }

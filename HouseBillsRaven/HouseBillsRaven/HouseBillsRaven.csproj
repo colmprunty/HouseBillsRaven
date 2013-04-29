@@ -129,6 +129,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BreakdownDto.cs" />
     <Compile Include="Models\CreateAllVm.cs" />
     <Compile Include="Models\CreateOneVm.cs" />
     <Compile Include="Models\Debt.cs" />
@@ -226,6 +227,7 @@
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Debt\GeneralList.cshtml" />
+    <Content Include="Views\Debt\Breakdown.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

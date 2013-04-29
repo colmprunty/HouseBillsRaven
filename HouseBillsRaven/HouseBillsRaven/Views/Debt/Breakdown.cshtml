@@ -1,0 +1,33 @@
+﻿@inherits WebViewPage<List<HouseBillsRaven.Models.BreakdownDto>>
+
+<table style="width: 50%">
+            <tr>
+                <th>Who?</th>
+                <th>Balance</th>
+            </tr>
+    
+        @foreach (var breakdown in Model)
+        {
+            using(Html.BeginForm("ConsolidateDebts", "Debt", new { debtorId = breakdown.Person.Id }))
+            {
+                <tr>
+                    <td>@breakdown.Person.Name</td>
+                    <td>@String.Format("{0:C}", breakdown.Amount)</td>
+                    <td>@if (breakdown.Amount > 0)
+                            {
+                                <input type="submit" value="Paid" />
+                            }
+                            else if(breakdown.Amount == 0)
+                            {
+                                <span>:)</span>
+                            }
+                            else
+                            {
+                                <span>:(</span>
+                            }
+                        </td>
+                </tr>
+                
+            }
+        }
+</table>
