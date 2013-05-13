@@ -1,0 +1,20 @@
+{
+  "Name": "Temp/Debts/ByOwedBy_IdAndPaid",
+  "Map": "from doc in docs.Debts\r\nselect new { OwedBy_Id = doc.OwedBy.Id, Paid = doc.Paid }",
+  "Maps": [
+    "from doc in docs.Debts\r\nselect new { OwedBy_Id = doc.OwedBy.Id, Paid = doc.Paid }"
+  ],
+  "Reduce": null,
+  "TransformResults": null,
+  "IsMapReduce": false,
+  "IsCompiled": false,
+  "IsTemp": true,
+  "Stores": {},
+  "Indexes": {},
+  "SortOptions": {},
+  "Analyzers": {},
+  "Fields": [],
+  "Suggestions": {},
+  "TermVectors": {},
+  "Type": "Temp"
+}

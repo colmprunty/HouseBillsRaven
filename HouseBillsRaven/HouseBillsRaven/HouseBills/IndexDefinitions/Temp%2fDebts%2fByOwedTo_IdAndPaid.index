@@ -1,8 +1,8 @@
 {
-  "Name": "Temp/Debts/ByOwedTo_Id",
-  "Map": "from doc in docs.Debts\r\nselect new { OwedTo_Id = doc.OwedTo.Id }",
+  "Name": "Temp/Debts/ByOwedTo_IdAndPaid",
+  "Map": "from doc in docs.Debts\r\nselect new { OwedTo_Id = doc.OwedTo.Id, Paid = doc.Paid }",
   "Maps": [
-    "from doc in docs.Debts\r\nselect new { OwedTo_Id = doc.OwedTo.Id }"
+    "from doc in docs.Debts\r\nselect new { OwedTo_Id = doc.OwedTo.Id, Paid = doc.Paid }"
   ],
   "Reduce": null,
   "TransformResults": null,

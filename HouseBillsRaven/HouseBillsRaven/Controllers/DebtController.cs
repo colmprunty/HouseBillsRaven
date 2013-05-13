@@ -18,7 +18,7 @@ namespace HouseBillsRaven.Controllers
         [HttpPost]
         public ActionResult CreateDebtForAll(CreateAllVm createAll)
         {
-            var count = OtherUsers.Count;
+            var count = OtherUsers.Count+1;
             foreach (var user in OtherUsers)
             {
                 var debt = new Debt
@@ -27,7 +27,8 @@ namespace HouseBillsRaven.Controllers
                                    Amount = createAll.Amount/count,
                                    Description = createAll.Description,
                                    OwedBy = user,
-                                   OwedTo = CurrentUser
+                                   OwedTo = CurrentUser,
+                                   Paid = false
                                };
 
                 RavenSession.Store(debt);
@@ -40,8 +41,8 @@ namespace HouseBillsRaven.Controllers
         public PartialViewResult GeneralList()
         {
             var model = new GeneralListVm();
-            model.OwedToMe = (from d in RavenSession.Query<Debt>().Where(x => x.OwedTo.Id == CurrentUser.Id) select d).ToList();
-            model.OwedToOthers = (from d in RavenSession.Query<Debt>().Where(x => x.OwedBy.Id == CurrentUser.Id) select d).ToList();
+            model.OwedToMe = (from d in RavenSession.Query<Debt>().Where(x => x.OwedTo.Id == CurrentUser.Id && !x.Paid) select d).ToList();
+            model.OwedToOthers = (from d in RavenSession.Query<Debt>().Where(x => x.OwedBy.Id == CurrentUser.Id && !x.Paid) select d).ToList();
             return PartialView(model);
         }
 
@@ -57,7 +58,7 @@ namespace HouseBillsRaven.Controllers
 
                 model.Add(new BreakdownDto
                               {
-                                  Person = user, Amount = iNeedToPay - owedToMe
+                                  Person = user, Amount = owedToMe - iNeedToPay
                               });
             }
 
@@ -66,6 +67,19 @@ namespace HouseBillsRaven.Controllers
 
         public ActionResult ConsolidateDebts(Guid debtorId)
         {
+            var allDebts = (from d in RavenSession.Query<Debt>() select d);
+            foreach (var debt in allDebts.Where(x => (x.OwedTo == CurrentUser && x.OwedBy.Id == debtorId) || (x.OwedTo.Id == debtorId && x.OwedBy == CurrentUser)))
+            {
+                debt.Paid = true;
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult MarkAsPaid(Guid debtId)
+        {
+            var debt = RavenSession.Load<Debt>(debtId);
+            debt.Paid = true;
 
             return RedirectToAction("Index", "Home");
         }

@@ -12,16 +12,20 @@
     <tr>
         <td colspan="5" style="text-align: center">I Am Owed</td>
     </tr>
-    @{foreach (var debt in Model.OwedToMe)
-      {
-          <tr>
-              <td>@debt.OwedBy.Name</td>
-              <td>@String.Format("{0:C}", debt.Amount)</td>
-              <td>@debt.Description</td>
-              <td>@debt.AddedDate.ToShortDateString()</td>
-              <td></td>
-          </tr>
-      }
+    @{
+        foreach (var debt in Model.OwedToMe)
+            {
+                using(Html.BeginForm("MarkAsPaid", "Debt", new { debtId = debt.Id }))
+                {
+                    <tr>
+                        <td>@debt.OwedBy.Name</td>
+                        <td>@String.Format("{0:C}", debt.Amount)</td>
+                        <td>@debt.Description</td>
+                        <td>@debt.AddedDate.ToShortDateString()</td>
+                        <td><button type="submit">Paid</button></td>
+                    </tr>
+                }
+            }
     }
     <tr>
         <td colspan="5" style="text-align: center">I Have To Pay</td>
