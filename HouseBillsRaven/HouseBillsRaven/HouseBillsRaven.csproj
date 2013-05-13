@@ -228,6 +228,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Debt\GeneralList.cshtml" />
     <Content Include="Views\Debt\Breakdown.cshtml" />
+    <Content Include="Views\Debt\CreateOne.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

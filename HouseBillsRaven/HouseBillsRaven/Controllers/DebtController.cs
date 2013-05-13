@@ -16,6 +16,24 @@ namespace HouseBillsRaven.Controllers
         }
 
         [HttpPost]
+        public ActionResult CreateDebtForOne(CreateOneVm createOne)
+        {
+            var owedBy = RavenSession.Load<Person>(createOne.PersonId);
+            var debt = new Debt
+                           {
+                               AddedDate = DateTime.Now,
+                               Amount = createOne.Amount,
+                               Description = createOne.Description,
+                               OwedBy = owedBy,
+                               OwedTo = CurrentUser,
+                               Paid = false
+                           };
+
+            RavenSession.Store(debt);
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
         public ActionResult CreateDebtForAll(CreateAllVm createAll)
         {
             var count = OtherUsers.Count+1;
@@ -82,6 +100,17 @@ namespace HouseBillsRaven.Controllers
             debt.Paid = true;
 
             return RedirectToAction("Index", "Home");
+        }
+
+        public PartialViewResult CreateOne()
+        {
+            var people = (from p in RavenSession.Query<Person>().Where(x => x.Id != CurrentUser.Id) select p).ToList();
+            var model = new CreateOneVm
+                            {
+                                People = (from p in people select new SelectListItem{ Text = p.Name, Value = p.Id.ToString()}).ToList()
+                            };
+
+            return PartialView(model);
         }
     }
 }
