@@ -7,6 +7,7 @@ namespace HouseBillsRaven.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
         public bool Alive { get; set; }
+        public bool Admin { get; set; }
     }
 
 }

@@ -8,5 +8,10 @@ namespace HouseBillsRaven.Controllers
         {
             return View();
         }
+
+        public ActionResult Admin()
+        {
+            return PartialView();
+        }
     }
 }

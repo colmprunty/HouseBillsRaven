@@ -4,11 +4,13 @@
         <li><a href="#Breakdown">Breakdown</a></li>
         <li><a href="#CreateAll">Create All</a></li>
         <li><a href="#CreateOne">Create One</a></li>
+        <li><a href="#Admin">Admin</a></li>
     </ul>
     <div id="GeneralList">@{ Html.RenderAction("GeneralList", "Debt"); }</div>
     <div id="Breakdown">@{ Html.RenderAction("Breakdown", "Debt");}</div>
     <div id="CreateAll">@{ Html.RenderAction("CreateAll", "Debt"); }</div>
     <div id="CreateOne">@{ Html.RenderAction("CreateOne", "Debt"); }</div>
+    <div id="Admin">@{ Html.RenderAction("Admin", "Home"); }</div>
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
