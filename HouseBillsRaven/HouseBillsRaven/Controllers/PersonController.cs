@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 using HouseBillsRaven.Models;
@@ -43,6 +44,16 @@ namespace HouseBillsRaven.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Login", new LoginVm());
+        }
+
+        public ActionResult Administer(AdminVm admin)
+        {
+            foreach (var p in admin.People)
+            {
+                var person = RavenSession.Load<Person>(p.Id);
+                person.UpdateAdminStuff(p.Alive, p.Admin);
+            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -14,18 +14,22 @@ namespace HouseBillsRaven.Controllers
                 RavenSession.Delete(person);
             }
 
+            var thisInstance = Guid.NewGuid();
+
             var colm = new Person
                            {
                                Id = Guid.NewGuid(),
                                Name = "Colm",
-                               Alive = true
+                               Alive = true,
+                               InstanceId = thisInstance
                            };
 
             var weija = new Person
                             {
                                 Id = Guid.NewGuid(),
                                 Name = "Weija",
-                                Alive = true
+                                Alive = true,
+                                InstanceId = thisInstance
                             };
 
             RavenSession.Store(colm);

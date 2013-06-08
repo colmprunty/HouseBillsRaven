@@ -1,2 +1,21 @@
-﻿<h2>Admin</h2>
+﻿@model HouseBillsRaven.Models.AdminVm
 
+@using(Html.BeginForm("Administer", "Person"))
+{
+    <table>
+        <tr>
+            <th>Person</th>
+            <th>Active</th>
+            <th>Admin</th>
+        </tr>
+        @for (var i = 0; i<Model.People.Count;i++)
+        {
+            <tr>
+                <td>@Html.HiddenFor(x => x.People[i].Id) @Model.People[i].Name</td>
+                <td>@Html.CheckBoxFor(x => x.People[i].Alive)</td>
+                <td>@Html.CheckBoxFor(x => x.People[i].Admin)</td>
+            </tr>
+        }
+    </table>
+    <input type="submit" value="Save"/>
+}

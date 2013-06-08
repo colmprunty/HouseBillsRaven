@@ -1,0 +1,23 @@
+{
+  "Name": "Temp/People/ByAliveAndInstanceIdAndNameSortByAliveName",
+  "Map": "from doc in docs.People\r\nselect new { InstanceId = doc.InstanceId, Alive = doc.Alive, Name = doc.Name }",
+  "Maps": [
+    "from doc in docs.People\r\nselect new { InstanceId = doc.InstanceId, Alive = doc.Alive, Name = doc.Name }"
+  ],
+  "Reduce": null,
+  "TransformResults": null,
+  "IsMapReduce": false,
+  "IsCompiled": false,
+  "IsTemp": true,
+  "Stores": {},
+  "Indexes": {},
+  "SortOptions": {
+    "Name": "String",
+    "Alive": "String"
+  },
+  "Analyzers": {},
+  "Fields": [],
+  "Suggestions": {},
+  "TermVectors": {},
+  "Type": "Temp"
+}
